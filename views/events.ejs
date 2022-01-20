@@ -1,0 +1,54 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Events</title>
+    <link rel="stylesheet" href="/css/events.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <%-include("partials/header"); -%>
+    <div class="main-container">
+        <div class="banner">
+            <img src="/img/event-banner.jpg">
+            
+            <div class="banner-text">
+                <h1>EVENTS</h1>
+                <h6>This page highlights all events held by MSSUNHCR</h6>
+                <p>Photo by <a href="https://unsplash.com/@chitz201?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chitto Cancio</a> on <a href="https://unsplash.com/s/photos/events?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
+                </p>
+            </div>
+            
+        </div>
+    <!-- <%# making the cards which containt events and their description %> -->
+  
+    <div class="event-container h-100">
+            <%  events.forEach(function(event){ %>
+            <div class="card">
+                <div class="card-block 30rem">
+                    <div class="card-image">
+                        <img src="/event-imgs/<%=event.image%>">
+                    </div>
+                    <div class="card-title">
+                    <h4><%= event.title %></h4>
+                    </div>
+                    <div class="card-date">
+                        <h6><%= event.date %></h6>
+                    </div>
+                    <div class="card-desc">
+                    <p><%= event.desc %></p>
+                    </div>
+                    
+                </div>
+            </div>
+            <% }) %>
+    </div>
+</div>
+          
+    
+
+<%- include("partials/footer"); -%>
+</body>
+</html>

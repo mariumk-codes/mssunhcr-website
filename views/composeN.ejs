@@ -1,0 +1,22 @@
+<%- include("partials/header"); -%>
+   <div class="container"> 
+<h1>New Newsletter</h1>
+    <form class="" action="/composeN" method="post">
+      <div class="form-group">
+        <label>Id</label>
+      <input class="form-control" type="number" name="id" placeholder="give the newsletter an id (the first newsletter posted would be 1, next is 2, etc.)">
+        <label>Title</label>
+        <input class="form-control" type="text" name="title">
+        <label>Date</label>
+        <input class="form-control" type="text" name="date">
+        <label>File</label>
+        <input class="form-control" type="text" name="file">
+        <label>Description</label>
+        <textarea class="form-control" name="desc" rows="5" cols="30"></textarea>
+        <label>Image</label>
+        <input class="form-control" required type="text" name="image" placeholder="Rename the file so it's only one word and include the type. Ex. img.png">
+      </div>
+      <button class="btn btn-primary" type="submit" name="button">Publish</button>
+    </form>
+   </div>
+<%- include("partials/footer"); -%>

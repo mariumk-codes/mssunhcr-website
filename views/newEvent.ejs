@@ -1,0 +1,70 @@
+<%- include("partials/header"); -%>
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Uploading</title>
+</head>
+  
+<body>
+    <h1>New Event</h1>
+    <hr>
+    <div>
+        <form action="/newEvent" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>Title</label>
+                <input class="form-control" required type="text" name="name" placeholder="Title">
+                <label>Date</label>
+                <input class="form-control" required type="text" name="date" placeholder="Month Day, Year">
+                <label>Time</label>
+                <input class="form-control" required type="text" name="time" placeholder="0:00 AM/PM">
+                <label>Location</label>
+                <input class="form-control" required type="text" name="location" placeholder="ex. 1500 Went Avenue">
+                <label>Description</label>
+                <textarea class="form-control" required type="text" name="desc"></textarea>
+            </div>
+            <div>
+                <label for="image">Upload Image</label>
+                <input type="file" id="image" 
+                       name="image" value="" required>
+            </div>
+            <div>
+          
+                <a href="/events" class="btn btn-secondary">Cancel</a>
+                <button class="btn btn-primary" type="submit" name="button">Publish</button>
+                  </div>      
+                      </form>
+                  </div>
+        </form>
+    </div>
+  
+    <hr>
+  
+    <h1>Uploaded Images</h1>
+    <div>
+        <% events.forEach(function(event) { %>
+        <div>
+            <div>
+                <img src="data:event/<%=event.img.contentType%>;base64,
+                     <%=event.img.data.toString('base64')%>">
+                <div>
+                    <h5><%= event.name %></h5>
+                      
+
+<p><%= event.time %></p>  
+<p><%= event.location%></p> 
+<p><%= event.date%></p>   
+<p><%= event.desc %></p>
+  
+  
+  
+                </div>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+</body>
+  
+</html>

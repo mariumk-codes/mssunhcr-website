@@ -1,18 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" dir="ltr">
+
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8">
+  <title>Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <a href="/" class="btn btn-success">MSSUNHCR</a>
-    <a href="/about" class="btn btn-success">ABOUT</a>
-    <a href="/newsletter" class="btn btn-success">NEWSLETTER</a>
-    <a href="/events" class="btn btn-success">EVENTS</a>
-    <a href="/volunteering" class="btn btn-success">VOLUNTEERING</a>
-    <a href="/community" class="btn btn-success">COMMUNITY</a>
+    <%- include("partials/header"); -%>
+    <div class="container">
+       
+    </div>
+
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
+        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="/img/unhcrivorprickett.jpeg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>McMaster Students In Support Of The United Nations High Commissioner For Refugees</h5>
+            <p>Explanation</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="/img/sampleimg.jpeg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5 class="title">Stat #2</h5>
+            <p> Explanation </p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="/img/unhcrivorprickett.jpeg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h6 class="title">Stat #3</h6>
+            <p> Explanation</p>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </a>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+      <div class="second-card">
+        <div class="text-space">
+          <h1>How You Can Help</h1>
+          <p></p>
+        </div>
+        <div class="home-csection">
+        <div class="home-card">
+            <div class="top">
+              <div class="icon">
+              <a href="/newsletter"><img src="/img/thinking.png" height="100px" width="100px"></a>
+              </div>
+              <div class="text">
+              <h4><b>Stay Informed</b></h4>
+              <p>Read our newsletter for latest updates on pressing issues</p>
+              </div>
+              <div class="credits">
+                <a href="https://www.flaticon.com/free-icons/chat" title="chat icons">Chat icons created by Pixel perfect - Flaticon</a>
+              </div>
+            </div>
+          </div>
+          <div class="home-card">
+            <div class="top">
+              <div class="icon">
+                <a href="/volunteering"><img src="/img/solidarity.png" height="100px" width="100px"></a>
+                </div>
+                <div class="text">
+              <h4><b>Volunteer Locally</b></h4>
+              <p>Help out those in need by volunteering locally</p>
+              </div>
+              <div class="credits">
+              <a href="https://www.flaticon.com/free-icons/hand" title="hand icons">Hand icons created by surang - Flaticon</a>
+              </div>
+            </div>
+          </div>
+          <div class="home-card">
+            <div class="top">
+              <div class="icon">
+                <a href="/events"><img src="/img/group.png" height="100px" width="100px"></a>
+                </div>
+                <div class="text">
+              <h4><b>Participate In Events</b></h4>
+              <p>Help out those in need by volunteering locally</p>
+              </div>
+              <div class="credits">
+                <a href="https://www.flaticon.com/free-icons/group" title="group icons">Group icons created by Prosymbols - Flaticon</a>
+              </div>
+            </div>
+          </div>
+          <!--<div class="home-card">
+            <div class="top">
+              <div class="icon">
+                <a href="/events"><img src="/img/group.png" height="100px" width="100px"></a>
+                </div>
+                <div class="text">
+              <h4><b>Join Events</b></h4>
+              <p>Lorem ipsum dolor sit amet</p>
+                </div>
+              <div class="credits">
+                <a href="https://www.flaticon.com/free-icons/group" title="group icons">Group icons created by Prosymbols - Flaticon</a>
+              </div>
+            </div>
+          </div>-->
+          </div>
+        </div>
+      <div class="second-image">
+        <div class="overlay">
+          <h1>Lorem Ipsum</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur</p>
+        </div>
+      </div>
+    <%- include("partials/footer"); -%>
 </body>
 </html>

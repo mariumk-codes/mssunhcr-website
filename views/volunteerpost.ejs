@@ -1,0 +1,27 @@
+<html>
+
+<head>
+
+</head>
+<body>
+
+<%- include("partials/header"); -%>
+<div class="post-container">
+<h1>New Volunteer Opportunity</h1>
+<form class="" action="/volunteerpost" method="post">
+  <div class="form-group">
+    <label>Title</label>
+    <input class="form-control" type="text" name="vtitle">
+    <label>Description</label>
+    <input class="form-control" type="text" name="vdescription" placeholder="max. 50 words">
+    <label>Link</label>
+    <input class="form-control" type="text" name="vlink">
+  </div>
+  
+  <a href="/volunteering" class="btn btn-secondary">Cancel</a>
+  <button class="btn btn-primary" type="submit" name="button">Publish</button>
+</form>
+</div>
+<%- include("partials/footer"); -%>
+</body>
+</html>

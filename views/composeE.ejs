@@ -1,0 +1,41 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Event</title>
+</head>
+  
+<body>
+    <%- include("partials/header"); -%>
+    <div class="container">
+    <h1>New Event</h1>
+    <hr>
+    <form class="" action="/composeE" method="post">
+    <div class="form-group">
+      <label>Id</label>
+      <input class="form-control" type="number" name="id" placeholder="give the event an id (the first event posted would be 1, next is 2, etc.)">
+      <label>Title</label>
+      <input class="form-control" type="text" name="title">
+      <label>Date</label>
+      <input class="form-control" type="text" name="date">
+      <label>Time</label>
+      <input class="form-control" type="text" name="time">
+      <label>Location</label>
+      <input class="form-control" type="text" name="location">
+      <label>Description</label>
+      <textarea class="form-control" name="desc" rows="5" cols="30"></textarea>
+      <label>Image</label>
+      <input class="form-control" required type="text" name="image" placeholder="Rename the file so it's only one word and include the type. Ex. img.png">
+    </div>
+    <button class="btn btn-primary" type="submit" name="button">Publish</button>
+  </form>
+    </div>
+
+</body>
+  
+</html>
+<%- include("partials/footer"); -%>

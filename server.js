@@ -1,92 +1,193 @@
-const express = require('express')
-const newsletterRouter = require('./routes/newsletter')
-const aboutRouter = require('./routes/about')
-const eventsRouter = require('./routes/events')
-const communityRouter = require('./routes/community')
-const volunteeringRouter = require('./routes/volunteering')
-const mongoose = require('mongoose')
-const app = express()
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const ejs = require("ejs");
+mongoose.connect("mongodb+srv://admin-marium:test123@cluster0.rou5e.mongodb.net/mssunhcr?retryWrites=true&w=majority")
+const path = require('path');
+const _ = require("lodash");
 
-mongoose.connect('mongodb://localhost/mssunhcr')
-app.set('view engine', 'ejs')
+const fs = require("fs");
+const { stringify } = require('querystring');
+const app= express();
 
-app.use(express.urlencoded({ extended: false}))
+app.set('view engine', 'ejs');
 
-//newsletter dropdown btns
-app.get('/newsletter', (req, res) => {
-    const newsletter = [{
-        title: 'Test Newsletter',
-        createdAt: new Date(),
-        description: 'Test description'
-    },
-    {
-        title: 'Test Newsletter 2',
-        createdAt: new Date(),
-        description: 'Test description 2'  
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static("public"));
+
+
+app.use('/pdfs', express.static('pdfs'));
+app.use('/event-imgs', express.static('event-imgs'));
+
+
+
+const aboutContent = "McMaster Students in support of the UNHCR (MSSUNHCR) is a club launched this fall that strives to follow in the footsteps of the UNHCR through various initiatives to aid refugees, returnees, stateless people, the internally displaced and asylum-seekers. We are determined to aid in the essential work of the UNHCR here at McMaster and provide a platform for UNHCR that enables students to join us on route to shed light on the hardships faced by refugees internationally and at home.McMaster Students in Support of the UNHCR (MSSUNHCR) aims to delve into the stories and struggles of refugees, stateless and displaced peoples, in the hopes of raising awareness on various refugee crises and eliminating misrepresented information through education and advocacy. Through various fundraising activities, events, campaigns and more, we intend to focus on the refugees themselves, rather than the situations that created them. MSSUNHCR is determined to make a difference within the McMaster, Canadian, and global communities of refugees." 
+
+const eventsSchema = {
+  id: Number,
+  title: String,
+  date: String,
+  desc: String,
+  time: String,
+  location: String,
+  image: String
+}
+
+
+const Event = mongoose.model("Event", eventsSchema);
+
+
+app.get("/events", function(req, res){
+
+  Event.find({}).sort({id:-1}).exec(function(err, events){
+    res.render("events", {
+      events: events
+      });
+  });
+});
+
+app.get("/composeE", function(req, res){
+  res.render("composeE");
+});
+
+app.post("/composeE", function(req, res){
+  const event = new Event({
+    id: req.body.id,
+    title: req.body.title,
+    date: req.body.date,
+    desc: req.body.desc,
+    location: req.body.location,
+    time: req.body.time,
+    image: req.body.image,
+  });
+  event.save(function(err){
+    if (!err){
+        res.redirect("/events");
     }
-    ]
-    res.render('newsletter/newsletter', {newsletter: newsletter})
-})
-//index dropdown btns
-app.get('/', (req, res) => {
-    const index = [{
-        title: 'Test Newsletter',
-        createdAt: Date.now(),
-        description: 'Test description'
-    }]
-    res.render('index', {index: index})
-})
+  });
+});
 
-//about dropdown btns
-app.get('/about', (req, res) => {
-    const about = [{
-        title: 'Test Newsletter',
-        createdAt: Date.now(),
-        description: 'Test description'
-    }]
-    res.render('about', {about: about})
-})
+const volunteersSchema = {
+    title: String,
+    description: String,
+    link: String
+};
 
-//community dropdown btns
-app.get('/community', (req, res) => {
-    const community = [{
-        title: 'Test Newsletter',
-        createdAt: Date.now(),
-        description: 'Test description'
-    }]
-    res.render('community', {community: community})
-})
+const Volunteer = mongoose.model("Volunteer", volunteersSchema);
 
-//events dropdown btns
-app.get('/events', (req, res) => {
-    const events = [{
-        title: 'Test Event',
-        createdAt: new Date(),
-        location: 'Test location'
-    },
-    {
-        title: 'Test Event 2',
-        createdAt: new Date(),
-        location: 'Test location 2'  
+
+
+const newslettersSchema = {
+  id: Number,
+  title: String,
+  date: String,
+  desc: String,
+  file: String
+}
+
+const Newsletter = mongoose.model("Newsletter", newslettersSchema);
+
+const emailsSchema = {
+  email: String
+}
+//storing emails into the database
+const Email = mongoose.model("Email", emailsSchema);
+app.post("/newsletter", function(req, res){
+  const email = new Email({
+    email: req.body.email
+  });
+  email.save(function(err){
+    if (!err){
+        res.redirect("/newsletter");
     }
-    ]
-    res.render('events/events', {events: events})
+  });
+});
+
+
+app.get("/newsletter", function(req, res){
+
+  Newsletter.find({}).sort({id:-1}).exec(function(err, newsletters){
+    res.render("newsletter", {
+      newsletters: newsletters
+      });
+  });
+});
+
+app.get("/composeN", function(req, res){
+  res.render("composeN");
+});
+
+app.post("/composeN", function(req, res){
+  const newsletter = new Newsletter({
+    id: req.body.id,
+    title: req.body.title,
+    date: req.body.date,
+    desc: req.body.desc,
+    file: req.body.file,
+  });
+  newsletter.save(function(err){
+    if (!err){
+        res.redirect("/newsletter");
+    }
+  });
+});
+
+
+app.get("/newsletters/:id", function(req, res)
+{
+    Newsletter.findById(req.params.id, function(err, newsletter)
+    {
+       if(!err){
+        res.render("n", {title: newsletter.title,
+          file: newsletter.file});
+      }
+      else{
+        console.log(err)
+      }
+     
+       })
+});
+
+app.get('/volunteering', function(req, res){
+  Volunteer.find({}, function(err, volunteers){
+    res.render('volunteering', {
+      volunteers:volunteers
+  })
 })
+});
+    
+app.get('/volunteerpost', function(req, res){
+  res.render('volunteerpost')
+});
 
-//volunteering dropdown btns
-app.get('/volunteering', (req, res) => {
-    const volunteering = [{
-        title: 'Test Newsletter',
-        createdAt: Date.now(),
-        description: 'Test description'
-    }]
-    res.render('volunteering', {volunteering: volunteering})
-})
+app.post("/volunteerpost", function(req, res){
+  const volunteer = new Volunteer ({
+    title: req.body.vtitle,
+    description: req.body.vdescription,
+    link: req.body.vlink
+  });
+  volunteer.save(function(err){
+    if(!err){
+      res.redirect("/volunteering");
+    }
+  });
+}) 
 
-app.use('/newsletter', newsletterRouter)
-app.use('/about', aboutRouter)
-app.use('/events', eventsRouter)
-app.use('/volunteering', volunteeringRouter)
-app.use('/community', communityRouter)
 
-app.listen(8000)
+app.get('/contact', function(req, res){
+  res.render('contact')
+});
+app.get('/', function(req, res) {
+  res.render('index')
+});
+app.get('/about', function(req, res){
+    res.render('about', {aboutContent: aboutContent});
+}); 
+app.get('/about', function(req, res){
+  res.render('about', {aboutContent: aboutContent});
+}); 
+app.get('/community', function(req, res)  {
+res.render('community')
+});
+
+app.listen(7000)
