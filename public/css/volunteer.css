@@ -6,8 +6,8 @@ html{
 }
 body{
   margin: 0;
-  overflow-x: hidden;
-  overflow-y:visible scroll;
+  overflow-x: initial;
+
 }
 header{
   height: 120px;
@@ -51,26 +51,43 @@ nav a{
   padding-top: 120px;
 }
 
-.main-container{
+/*.main-container{
   padding-top: 120px;
+  height: auto;
   /*height: 100vh;
-  width: 100vw;*/
-}
-
+  width: 100vw;
+}*/
 img{
   max-width: 100% !important;
   height: auto;
   background-size: cover;
 }
+.main-container{
+  padding-top: 120px;
+  min-height: 100%;
+  height: auto !important;
+  /*margin: 0 auto -200px ;
+  overflow: visible;*/
+}
+.volunteer-container{
+  float: left;
+  margin-left: 113px;
 
+}
+
+.footer, .push{
+  height: 200px;
+  overflow-y: none;
+}
 
 .footer {
   display: flex;
   flex-flow: row wrap;
   padding: 50px;
   color: #fff;
-  background-color: rgb(48, 48, 61);
-  bottom: 0;
+  background-color: #0d1422;
+  bottom:0;
+  margin-top: 500px;
   position: relative;
   }
   
@@ -182,8 +199,8 @@ img{
 .volunteer-container .card{
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    margin-left: 100px;
-    margin-bottom: 100px;
+    margin-left: 70px;
+    margin-bottom: 70px;
     height: 300px;
     width: 300px;
     display: flex;
@@ -230,12 +247,6 @@ img{
 
  }
  
-.volunteer-container{
-    float: left;
-    margin-bottom: 500px;
-    padding: 20px;
-    min-height: 100vh;
 
-}
 
 /*volunteer opportunities card grid*/

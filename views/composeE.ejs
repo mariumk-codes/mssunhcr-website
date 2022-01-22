@@ -17,17 +17,19 @@
     <form class="" action="/composeE" method="post">
     <div class="form-group">
       <label>Id</label>
-      <input class="form-control" type="number" name="id" placeholder="give the event an id (the first event posted would be 1, next is 2, etc.)">
+      <input class="form-control" required type="number" name="id" placeholder="give the event an id (the first event posted would be 1, next is 2, etc.)">
       <label>Title</label>
-      <input class="form-control" type="text" name="title">
+      <input class="form-control" required type="text" name="title">
       <label>Date</label>
-      <input class="form-control" type="text" name="date">
+      <input class="form-control" required type="text" name="date">
       <label>Time</label>
-      <input class="form-control" type="text" name="time">
+      <input class="form-control" required type="text" name="time">
       <label>Location</label>
-      <input class="form-control" type="text" name="location">
+      <input class="form-control" required type="text" name="location">
+      <label>Link</label>
+      <input class="form-control" required type="text" name="link" placeholder="place the link to sign up for the event here">
       <label>Description</label>
-      <textarea class="form-control" name="desc" rows="5" cols="30"></textarea>
+      <textarea class="form-control" required name="desc" rows="5" cols="30"></textarea>
       <label>Image</label>
       <input class="form-control" required type="text" name="image" placeholder="Rename the file so it's only one word and include the type. Ex. img.png">
     </div>

@@ -1,11 +1,14 @@
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const ejs = require("ejs");
-mongoose.connect("mongodb+srv://admin-marium:test123@cluster0.rou5e.mongodb.net/mssunhcr?retryWrites=true&w=majority")
+mongoose.connect("http://mongodb+srv://admin-marium:test123@cluster0.rou5e.mongodb.net/mssunhcr?retryWrites=true&w=majority")
 const path = require('path');
 const _ = require("lodash");
 
+require('mongoose-type-email');
+mongoose.SchemaTypes.Email.defaults.message = 'Email address is invalid';
 const fs = require("fs");
 const { stringify } = require('querystring');
 const app= express();
@@ -21,16 +24,16 @@ app.use('/event-imgs', express.static('event-imgs'));
 
 
 
-const aboutContent = "McMaster Students in support of the UNHCR (MSSUNHCR) is a club launched this fall that strives to follow in the footsteps of the UNHCR through various initiatives to aid refugees, returnees, stateless people, the internally displaced and asylum-seekers. We are determined to aid in the essential work of the UNHCR here at McMaster and provide a platform for UNHCR that enables students to join us on route to shed light on the hardships faced by refugees internationally and at home.McMaster Students in Support of the UNHCR (MSSUNHCR) aims to delve into the stories and struggles of refugees, stateless and displaced peoples, in the hopes of raising awareness on various refugee crises and eliminating misrepresented information through education and advocacy. Through various fundraising activities, events, campaigns and more, we intend to focus on the refugees themselves, rather than the situations that created them. MSSUNHCR is determined to make a difference within the McMaster, Canadian, and global communities of refugees." 
+const aboutContent = "McMaster Students in support of the UNHCR (MSSUNHCR) is a club that strives to follow in the footsteps of the UNHCR through various initiatives to aid refugees, returnees, stateless people, the internally displaced and asylum-seekers. We are determined to aid in the essential work of the UNHCR here at McMaster and provide a platform for UNHCR that enables students to join us on route to shed light on the hardships faced by refugees internationally and at home.McMaster Students in Support of the UNHCR (MSSUNHCR) aims to delve into the stories and struggles of refugees, stateless and displaced peoples, in the hopes of raising awareness on various refugee crises and eliminating misrepresented information through education and advocacy. Through various fundraising activities, events, campaigns and more, we intend to focus on the refugees themselves, rather than the situations that created them. MSSUNHCR is determined to make a difference within the McMaster, Canadian, and global communities of refugees." 
 
 const eventsSchema = {
-  id: Number,
   title: String,
   date: String,
   desc: String,
   time: String,
   location: String,
-  image: String
+  image: String,
+  link: String
 }
 
 
@@ -52,13 +55,13 @@ app.get("/composeE", function(req, res){
 
 app.post("/composeE", function(req, res){
   const event = new Event({
-    id: req.body.id,
     title: req.body.title,
     date: req.body.date,
     desc: req.body.desc,
     location: req.body.location,
     time: req.body.time,
     image: req.body.image,
+    link: req.body.link,
   });
   event.save(function(err){
     if (!err){
@@ -78,35 +81,38 @@ const Volunteer = mongoose.model("Volunteer", volunteersSchema);
 
 
 const newslettersSchema = {
-  id: Number,
   title: String,
   date: String,
   desc: String,
-  file: String
+  file: String,
+  image: String
 }
 
 const Newsletter = mongoose.model("Newsletter", newslettersSchema);
 
-const emailsSchema = {
-  email: String
-}
+const Email = mongoose.model('Email', mongoose.Schema({
+  email: {
+    type: mongoose.SchemaTypes.Email,
+    unique:true,
+  } 
+}));
 //storing emails into the database
-const Email = mongoose.model("Email", emailsSchema);
+
 app.post("/newsletter", function(req, res){
   const email = new Email({
-    email: req.body.email
+    email: req.body.email,
   });
   email.save(function(err){
     if (!err){
         res.redirect("/newsletter");
-    }
+    }else{res.redirect("/error")}
   });
 });
 
 
 app.get("/newsletter", function(req, res){
 
-  Newsletter.find({}).sort({id:-1}).exec(function(err, newsletters){
+  Newsletter.find({}).sort({_id:-1}).exec(function(err, newsletters){
     res.render("newsletter", {
       newsletters: newsletters
       });
@@ -119,11 +125,11 @@ app.get("/composeN", function(req, res){
 
 app.post("/composeN", function(req, res){
   const newsletter = new Newsletter({
-    id: req.body.id,
     title: req.body.title,
     date: req.body.date,
     desc: req.body.desc,
     file: req.body.file,
+    image: req.body.image
   });
   newsletter.save(function(err){
     if (!err){
@@ -149,7 +155,7 @@ app.get("/newsletters/:id", function(req, res)
 });
 
 app.get('/volunteering', function(req, res){
-  Volunteer.find({}, function(err, volunteers){
+  Volunteer.find({}).sort({_id:-1}).exec(function(err, volunteers){
     res.render('volunteering', {
       volunteers:volunteers
   })
@@ -183,9 +189,10 @@ app.get('/', function(req, res) {
 app.get('/about', function(req, res){
     res.render('about', {aboutContent: aboutContent});
 }); 
-app.get('/about', function(req, res){
-  res.render('about', {aboutContent: aboutContent});
+app.get('/error', function(req, res){
+  res.render('error');
 }); 
+
 app.get('/community', function(req, res)  {
 res.render('community')
 });

@@ -77,7 +77,7 @@ img{
   flex-flow: row wrap;
   padding: 50px;
   color: #fff;
-  background-color: rgb(48, 48, 61);
+  background-color: #0d1422;
   position: bottom;
   }
   
@@ -173,6 +173,9 @@ img{
       color: #112242;
       margin-bottom: 50px;
       text-transform: uppercase;
+  }
+  .card-text{
+    font-weight: bold;
   }
   
   #team .card {

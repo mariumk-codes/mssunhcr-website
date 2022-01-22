@@ -12,38 +12,58 @@
 <body>
     <%-include("partials/header"); -%>
     <div class="main-container">
-     <h1>Newsletter</h1>
-     <div class="newsletter-container">
-        <%  newsletters.forEach(function(newsletter){ %>
-    
-            <div class="card mt-4">
-                <div class="card-body">
-                    <h1 class="card-title"><%= newsletter.title %></h1>
-                    <div class="card-subtitle text-muted mb-2">
-                        <%= newsletter.date %>
-                    </div>
-                    <div class="card-text mb-2"><%=newsletter.desc%> </div>
-    
-                    <a href="/newsletters/<%= newsletter._id %>">Read More</a>
-                
-            </div>
-        </div>
-   
-    
-        <% }) %>
-     </div>
+    <div class="banner">
+                    <img src="/img/newsletter.jpg">
+                    
+                    <div class="banner-text">
+                        <h1>NEWSLETTERS</h1>
+                        <h6>Read our monthly newsletters here!</h6>
+                        <p>Photo by <a href="https://unsplash.com/@hudsoncrafted?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Debby Hudson</a> on <a href="https://unsplash.com/collections/1927196/newsletter?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
+                        </p>
+                    </div>
+                    
+                </div>
+  
+     <div class="newsletter-container">
+        <div class="row">
+            
+        <%  newsletters.forEach(function(newsletter){ %>
+                <div class="newsletter-card">
+                    <div class="card-image">
+                         <img src="/newsletter-img/<%=newsletter.image%>">
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title"><%= newsletter.title %></h1>
+                        <div class="card-subtitle text-muted mb-2">
+                        <%= newsletter.date %>
+                        </div>
+                        <div class="card-text"><%=newsletter.desc%> </div>
+    
+                        <h6><a href="/newsletters/<%= newsletter._id %>">Read More</a></h6>
+                     </div>
+                </div>
+       <% }) %>
+
+</div>
+     </div>
+     <div class="push">
+     <div class="subscription-container">
         <div class="subscribe">
-            <h2 class="subscribe__title">Subscribe To Our Newsletter</h2>
+            <h6 class="subscribe__title">Subscribe To Our Newsletter</h6>
             <form class="" action="/newsletter" method="post">
             <div class="form">
-                <input type="text" class="form__email" name="email" placeholder="Ex. joelburns145@gmail.com" />
-                <button class="btn btn-primary" type="submit" name="button">Publish</button>
+                <input required type="text" class="form__email" name="email" placeholder="ex. joelburns145@gmail.com" />
+                <button class="btn btn-primary" type="submit" name="button">SUBMIT</button>
             </div>
             </form>
     
         </div>
+        </div>
+        
+    </div>
+    <%- include("partials/footer"); -%>
     </div>
 </body>
-<%- include("partials/footer"); -%>
+
 </html>

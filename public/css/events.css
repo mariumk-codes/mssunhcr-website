@@ -51,13 +51,25 @@ nav a{
 }
 .post-container{
   padding-top: 120px;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
 }
-.event-container{
+.main-container{
   padding-top: 120px;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100%;
+  height: auto !important;
+  margin: 0 auto -200px ;
+  /*height: 100vh;
+  width: 100vw;*/
+}
+
+img{
+  max-width: 100% !important;
+  height: auto;
+  background-size: cover;
+}
+.footer, .push{
+  height: 200px;
 }
 img{
   max-width: 100% !important;
@@ -73,7 +85,7 @@ img{
     width: 100vw;
     padding: 50px;
     color: #fff;
-    background-color: rgb(48, 48, 61);
+    background-color: #0d1422;
     bottom: 0;
     position: relative;
     }
@@ -153,13 +165,7 @@ img{
     }
     }
 
-  .event-container{
-    float: left;
-    margin-bottom: 600px;
-    padding: 20px;
-    min-height: 100vh;
-
-}
+  
 
 .banner{
     width: 100%;
@@ -201,47 +207,68 @@ img{
 .event-container .card{
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    margin-left: 100px;
-    margin-bottom: 100px;
-    height: 300px;
-    width: 300px;
+    margin-left: 80px;
+    margin-bottom: 80px;
+    height: auto;
+    width: 400px;
     display: flex;
     flex-flow: row wrap;
     float: left;
     border-radius: 10px;
-    
-
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
     
  }
  .event-container .card:hover{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
  }
+.card-image{
+  height: 300px;
+  overflow: hidden;
+  border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+ 
 .card-title{
     width: 250px;
-    height: 100px;
-    padding: 10px;
+    height: auto;
+    padding-left: 10px;
     justify-content: center;
     align-items: center;
     color: #112242;
 }
 
 .card-desc{
-    width: 250px;
-    height: 130px;
-    padding: 15px;
+    width: 350px;
+    height: auto;
+    padding: 10px;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 }
 .event-container{
     float: left;
-    margin-bottom: 500px;
-    padding: 20px;
-    min-height: 100vh;
-
+  
+    margin-top: 70px;
+    margin-left: 190px;
+    width: 90%;
+    height: auto;
 }
  .card-block h4{
      text-transform: uppercase;
      font-size: 20px;
 
  }
+ .card-info{
+   height: 30px;
+ }
+ .card .link{
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.card .link a{
+  text-decoration: none;
+  text-transform: lowercase;
+  color: #112242;
+}

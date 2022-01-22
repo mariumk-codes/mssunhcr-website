@@ -28,27 +28,39 @@
             <%  events.forEach(function(event){ %>
             <div class="card">
                 <div class="card-block 30rem">
-                    <div class="card-image">
+                    <div class="card-image 30 rem">
                         <img src="/event-imgs/<%=event.image%>">
                     </div>
                     <div class="card-title">
                     <h4><%= event.title %></h4>
                     </div>
-                    <div class="card-date">
-                        <h6><%= event.date %></h6>
+                    <div class="card-info">
+                        <div style=" margin-left: 10px;  float: left;">
+                        <h6><%= event.date %> | </h6> 
+                        </div>
+                        <div style="float: left; margin-left: 5px;">
+                            <h6><%= event.time %> @ </h6>
+                        </div>
+                        <div style="float: left; margin-left: 5px; ">
+                            <h6><%= event.location %></h6>
+                        </div>
                     </div>
                     <div class="card-desc">
                     <p><%= event.desc %></p>
                     </div>
-                    
+                    <div class="link">
+                        <a href="<%= event.link %>">click to sign up</a>
+                    </div>
                 </div>
             </div>
             <% }) %>
     </div>
+    <div class="push">
 </div>
           
     
 
 <%- include("partials/footer"); -%>
+</div>
 </body>
 </html>

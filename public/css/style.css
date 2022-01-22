@@ -37,6 +37,7 @@ nav a{
   text-decoration: none!important;
   font-family: 'Roboto Bold', sans-serif;
   letter-spacing: 2px;
+  font-weight: 500;
   font-size: 16px;
   color: #181c3d;
   margin: 0 10px;
@@ -77,7 +78,7 @@ img{
   flex-flow: row wrap;
   padding: 50px;
   color: #fff;
-  background-color: rgb(48, 48, 61);
+  background-color: #0d1422;
   position: bottom;
   }
   
@@ -214,23 +215,30 @@ img{
   margin: 0;
   font-size: 28px;
 }
-.overlay h1 {
-  font-size: 65px;
+.overlay{
+  padding: 50px;
+}
+.overlay h6{
+  font-size: 20px;
   letter-spacing: 0px;
   margin: 0 0 5px;
 }
-
-.overlay p {
-  margin: 0;
-  font-size: 28px;
+.overlay h5{
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 0px;
+  border: 2px #999;
 }
 .text h4{
   text-align: center;
   margin: 50px;
+  color: #112242;
 }
 .text p{
   text-align: center;
   margin: 50px;
+  color: #112242;
 }
 .top a{
   margin:50px;
@@ -249,7 +257,7 @@ img{
 }
 .credits a{
   font-size: 7px;
-  color: black;
+  color: #112242;
   text-decoration: none;
   text-transform: capitalize;
 }
@@ -259,6 +267,7 @@ img{
 }
 .home-card .p{
   float: right;
+  color: #112242;
 }
 
 .home-card {
@@ -288,6 +297,7 @@ img{
 }
 
 .carousel-item{
+
   height: 100vh;
   width: 100vw;
   position: relative;
@@ -298,23 +308,53 @@ img{
   -webkit-background-size:cover;
   padding-bottom: 0;
 }
+.carousel-item .img-container{
+  background: rgba(153, 153, 153, 0.445);
+  overflow: hidden;
+  height: 100%;
+  z-index: 2;
+}
+.overflow {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.733);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.carousel-item .img:hover{
+ background: rgba(153, 153, 153, 0.589);
+}
 .carousel-caption{
-  bottom: 270px;
+  border-radius: 10px;
+  background-color: #0d142231;
+  bottom: 250px;
+  padding: 20px;
 }
 .carousel-caption h5{
-  font-size: 45px;
+  font-size: 40px;
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-top: 0px;
-  text-shadow:1px 1px rgb(206, 209, 212);
+
 }
 .carousel-caption h6{
-  font-size: 65px;
+  font-size: 20px;
   letter-spacing: 0px;
   margin: 0 0 5px;
 }
 .carousel-caption p{
-  margin: 0;
-  font-size: 28px;
+  margin-top: 10;
+  font-size: 10px;
+}
+
+.carousel-caption p a{
+  text-decoration: none;
+  color: white;
 }
 
