@@ -93,20 +93,26 @@ const Newsletter = mongoose.model("Newsletter", newslettersSchema);
 const Email = mongoose.model('Email', mongoose.Schema({
   email: {
     type: mongoose.SchemaTypes.Email,
-    unique:true,
+    unique: true
   } 
 }));
 //storing emails into the database
 
-app.post("/newsletter", function(req, res){
+app.post("/newsletter", function( req, res){
   const email = new Email({
     email: req.body.email,
   });
   email.save(function(err){
     if (!err){
-        res.redirect("/newsletter");
-    }else{res.redirect("/error")}
-  });
+        res.redirect("/confirmed");
+    }else{
+      if(err.code && err.code == 11000) {
+        res.redirect("/confirmed")
+      }
+      else{
+        res.redirect("/error")
+      }
+  }});
 });
 
 
@@ -191,6 +197,9 @@ app.get('/about', function(req, res){
 }); 
 app.get('/error', function(req, res){
   res.render('error');
+}); 
+app.get('/confirmed', function(req, res){
+  res.render('confirmed');
 }); 
 
 app.get('/community', function(req, res)  {
