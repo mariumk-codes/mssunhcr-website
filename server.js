@@ -206,4 +206,8 @@ app.get('/community', function(req, res)  {
 res.render('community')
 });
 
-app.listen(7000)
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 7000;
+};
+app.listen(port);
